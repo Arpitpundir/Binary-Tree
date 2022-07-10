@@ -8,25 +8,29 @@ class node{
   node* right;
 };
 
-int findHeight(node *root){
-  if(root == NULL){
-    return 0;
-  }
-  return max(findHeight(root->left), findHeight(root->right))+1;
-}
+// int findHeight(node *root){
+//   if(root == NULL){
+//     return 0;
+//   }
+//   return max(findHeight(root->left), findHeight(root->right))+1;
+// }
 
 int findDiameter(node* root){
   if(root == NULL){
-    return 0;
+    return {0,0};
   }
   //so there are three cases first is when diameter passes through root in this case we need max height of left subtree
   //and max height of right subtree
   //other two cases are diameter might lie in left subtree and diameter might lie in right subtree 
-  int h1 = findHeight(root->left);
-  int h2 = findHeight(root->right);
-  int d1 = findDiameter(root->left);
-  int d2 = findDiameter(root->right);
-  return max(d1, max(d2, 1+h1+h2));
+  auto leftTreeData = findDiameter(root->left);
+  auto rightTreeData = findDiameter(root->right);
+  int h1 = leftTreeData.second;
+  int h2 = rightTreeData.second;
+  int d1 = leftTreeData.first;
+  int d2 = rightTreeData.first;
+  int currHeight = 1+max(h1,h2);
+  int maxDiameter = max(1+h1+h2, max(d1,d2));
+  return {maxDiameter, currHeight};
 }
 
 int main(){
