@@ -1,8 +1,6 @@
 class Solution
 {
     public:
-    //Function to return a list of nodes visible from the top view 
-    //from left to right in Binary Tree.
     vector<int> topView(Node *root)
     {
         vector<int> ans;
@@ -11,7 +9,7 @@ class Solution
         q.push({root, 0}); q.push({NULL, 0});
         
         while(!q.empty()){
-             auto curr = q.front();
+            auto curr = q.front();
             q.pop();
             
             Node* currNode = curr.first;

@@ -8,6 +8,12 @@ public:
         
         q.push({root, 0});
         q.push({NULL, 0});
+        /*
+        * initialize queue with root and NULL
+        * store node and its horizontal distance in map
+        * vertical distance will be taken care by bfs
+        * when processing a node push this node to map in its horizontal distance vector
+        */
         
         while(!q.empty()){
             auto curr = q.front();
@@ -42,4 +48,4 @@ public:
         
         return ans;
     }
-};``
+};

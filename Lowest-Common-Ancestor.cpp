@@ -37,3 +37,16 @@ public:
         
     }
 };
+
+class Solution {
+public:
+    int inorder(TreeNode *root, int minVal, int maxVal){
+        if(!root) return 0;
+        int currentAns = max(abs(root->val-minVal), abs(root->val-maxVal));
+        int subtreeAns = max(inorder(root->left, min(root->val, minVal), max(root->val, maxval)), inorder(root->right, min(root->val, minVal), max(root->val, maxval)))
+        return max(currentAns, subtreeAns);
+    }
+    int maxAncestorDiff(TreeNode* root) {
+        return inorder(root, root->val, root->val);
+    }
+};
